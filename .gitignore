@@ -24,6 +24,7 @@ dist/
 
 # Private runs, checkpoints, downloads and original training experiments
 runtime/
+private-prep/
 emb-_cbt/
 *.sqlite*
 *.db

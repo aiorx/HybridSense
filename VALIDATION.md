@@ -36,7 +36,7 @@ npm run build
 
 可重复执行的集成脚本：`scripts/api_smoke.py`、`scripts/accept_v2.py`、`scripts/browser_v2.cjs`。后两项使用真实供应商连接，会消耗 API 额度；浏览器脚本需要 Playwright、Microsoft Edge，以及在线验收生成的示例报告。
 
-私人会话、任务标识、源码历史、检查点、原始机器可读验收记录和运行截图留在本地 `runtime/`，不随仓库提交。`docs/images/workspace.png` 仅展示通用欢迎界面。
+私人会话、任务标识、源码历史、检查点与原始机器可读验收记录留在本地 `runtime/`，不随仓库提交。公开截图 `docs/images/workspace.png` 与 `docs/images/hotspots.png` 分别展示通用欢迎界面和合成示例的片段复核视图。
 
 ## 科学解释的边界
 

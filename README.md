@@ -1,12 +1,18 @@
 # HybridSense
 
-**Analyze AI signals in mixed human and AI code, with a conversational agent and traceable model evidence.**
+**An evidence-driven audit agent for AI signals in mixed-authorship code.**
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-HybridSense combines six language-specific code classifiers, an MCP service, a DeepAgents harness, and a React workspace. Ask a general question, request a code explanation, or submit source files for an audit with ranked fragments and an exportable report.
+Modern source files can combine human design, AI generation, and subsequent manual edits. Reviewing these files requires both an overall signal and a practical answer to **where to look next**.
+
+HybridSense combines multi-source code features with ensemble decisions, then turns model outputs into ranked fragments, inspectable evidence, and exportable review reports. Its conversational workspace supports ordinary questions and code explanations; submitting code without instructions starts an audit automatically. Six language-specific classifiers, a real MCP service, and a bounded DeepAgents harness connect the research method to a working application.
+
+[Research methodology](RESEARCH.md) · [Validation](VALIDATION.md)
 
 ![HybridSense conversational workspace](docs/images/workspace.png)
+
+![Ranked fragments and source previews](docs/images/hotspots.png)
 
 ## Features
 
@@ -29,7 +35,7 @@ The interface uses **AI-generation score**. Scores are **uncalibrated**, not ver
 | Multi-file summary | File scores weighted by non-whitespace character count; cross-language scores are not jointly calibrated |
 | High-signal marker | An engineering review threshold of 0.80; 0.65 marks additional review candidates |
 
-Thresholds have not been selected on a new independent validation set. Highlighted lines inherit fragment context; they are not line-level authorship labels. Formal accuracy, calibration, and robustness claims require separate labeled evaluation. See [research methodology](RESEARCH.md) and [engineering validation](VALIDATION.md).
+Thresholds have not been selected on a new independent validation set. Highlighted lines inherit fragment context; they are not line-level authorship labels. Detection performance, fragment localization, calibration, and robustness require independent labeled evaluation. See [research methodology](RESEARCH.md) and [engineering validation](VALIDATION.md).
 
 ## Quick start
 
