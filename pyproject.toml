@@ -1,0 +1,21 @@
+[project]
+name = "hybridsense"
+version = "0.2.0"
+description = "HybridSense multi-language code provenance MCP and DeepAgents harness"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "fastapi>=0.115", "uvicorn>=0.34", "python-multipart>=0.0.20", "python-dotenv>=1",
+  "numpy>=2,<3", "scipy>=1.15", "scikit-learn==1.8.0", "lightgbm>=4.6", "joblib>=1.4",
+  "torch>=2.5", "transformers>=4.48,<5", "huggingface-hub>=0.28,<1",
+  "tree-sitter>=0.25", "tree-sitter-c", "tree-sitter-cpp", "tree-sitter-java",
+  "tree-sitter-javascript", "tree-sitter-typescript", "esprima", "javalang",
+  "mcp>=1.20,<2", "deepagents>=0.7.28,<0.8", "langchain-openai>=1,<2",
+  "langchain-mcp-adapters>=0.1,<1", "langgraph-checkpoint-sqlite>=3,<4", "httpx>=0.28"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.24"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

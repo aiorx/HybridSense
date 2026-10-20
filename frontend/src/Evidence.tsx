@@ -1,0 +1,20 @@
+import React, {useState} from 'react';
+import {ArrowUpRight, ChevronDown, ChevronRight, Fingerprint, Search, ShieldCheck} from 'lucide-react';
+
+export type Region = {start:number;end:number;start_offset?:number;end_offset?:number;ai_probability:number;name?:string;kind?:string;context_flags?:string[];voter_range?:number[]};
+export type Evidence = {ai_probability:number;regions:Region[];local_summary?:{score:number|null;coverage:number;high_signal_regions:number;line_scores?:{line:number;score:number|null}[]};localization?:{parser_status:string;budget_limited:boolean};warnings:string[]};
+
+export function ScoreContext({result}:{result:Evidence}){
+ const local=result.local_summary;
+ return <div className="score-context"><div><ShieldCheck size={14}/><strong>AI 生成倾向分数</strong><span>未校准 · 辅助复核</span></div><p>整体分数来自原文件级分类器。局部汇总按重叠窗口覆盖的非空白字符平均，不代表 AI 代码占比。</p>{local&&<div className="local-metrics"><span>局部汇总<strong>{local.score===null?'—':(local.score*100).toFixed(1)+'%'}</strong></span><span>窗口扫描覆盖<strong>{(local.coverage*100).toFixed(1)}%</strong></span><span>高信号片段<strong>{local.high_signal_regions}</strong></span></div>}<details className="method-sources"><summary>计算定义与研究依据</summary><p>函数 / 方法 + 480 token 重叠窗口；窗口逐字符平均后汇总。80% / 65% 为尚未独立验证的工程复核阈值，片段定位属于文件级模型的探索性应用。</p><a href="https://proceedings.mlr.press/v70/guo17a.html" target="_blank" rel="noreferrer">概率校准 · Guo et al., ICML 2017 ↗</a><a href="https://arxiv.org/abs/2606.12620" target="_blank" rel="noreferrer">混写片段定位 · HybridCodeAuthorship 2026 ↗</a><a href="https://aclanthology.org/2026.semeval-1.397/" target="_blank" rel="noreferrer">长代码窗口处理 · CodeDet-NITS 2026 ↗</a></details></div>;
+}
+
+export function RankedRegions({result,code,onFocus}:{result:Evidence;code:string;onFocus?:(r:Region)=>void}){
+ const [filter,setFilter]=useState('all');const [expanded,setExpanded]=useState<number|null>(null);
+ const ranked=result.regions.map((r,index)=>({...r,index})).filter(r=>filter==='all'||(filter==='high'?r.ai_probability>=.8:r.kind==='function')).sort((a,b)=>b.ai_probability-a.ai_probability);
+ return <div className="ranked-regions"><div className="info-note"><Search size={16}/><p>按模型信号排序，优先复核高分片段。80% 为未验证的工程高信号阈值，标色来自片段上下文判别。</p></div><div className="region-filters">{[['all','全部片段'],['high','高信号 ≥80%'],['function','函数 / 方法']].map(([id,title])=><button key={id} className={filter===id?'active':''} onClick={()=>setFilter(id)}>{title}</button>)}<span>{ranked.length} 段</span></div>
+ {ranked.map((r,rank)=>{const high=r.ai_probability>=.8;const open=expanded===r.index;const source=r.start_offset!==undefined&&r.end_offset!==undefined?Array.from(code).slice(r.start_offset,r.end_offset).join(''):code.split('\n').slice(r.start-1,r.end).join('\n');return <div key={r.index} className={'hotspot '+(high?'high-signal':'')}><button className="hotspot-head" onClick={()=>{setExpanded(open?null:r.index);onFocus?.(r);}}><span className="region-index">{String(rank+1).padStart(2,'0')}</span><div><strong>{r.name||`代码片段 ${r.index+1}`}</strong><span>L{r.start}–{r.end} · {r.kind==='function'?'函数 / 方法':'上下文窗口'}{r.context_flags?.includes('short_context')?' · 短上下文':''}{r.context_flags?.includes('semantic_truncation')?' · 语义截断':''}</span></div><div className="hotspot-score"><strong>{(r.ai_probability*100).toFixed(1)}%</strong><small>{high?'AI 高信号':r.ai_probability>=.65?'建议复核':'较低信号'}</small></div>{open?<ChevronDown size={14}/>:<ChevronRight size={14}/>}</button>{open&&<div className="hotspot-body"><div><Fingerprint size={12}/><span>探索性片段判别 · 非逐行作者认定</span>{onFocus&&<button onClick={()=>onFocus(r)}>定位源码<ArrowUpRight size={13}/></button>}</div><pre>{source}</pre>{r.voter_range&&r.voter_range.length>1&&<small>模型输出范围 {(r.voter_range[0]*100).toFixed(1)}%–{(r.voter_range[1]*100).toFixed(1)}% · 不是统计置信区间</small>}</div>}</div>;})}
+ {!ranked.length&&<div className="empty-state"><Search size={30}/><h3>当前筛选无匹配片段</h3><p>较低信号也不能证明代码完全由人类编写。</p></div>}
+ {result.localization?.budget_limited&&<p className="coverage-warning">片段数量达到预算上限，请结合实际覆盖率解读或拆分文件复核。</p>}
+ </div>;
+}

@@ -1,0 +1,68 @@
+{
+  "format_version": 1,
+  "purpose": "inference-only assets; no training data rows",
+  "languages": {
+    "python": {
+      "model": "Python/data_all/processed/models_python/ensemble_model_python.joblib",
+      "model_sha256": "73224bdc609cd4f9a5b8673801ec53574a806a3d278f126b090b756d6c97abd8",
+      "feature_count": 400,
+      "schema": "Python/data_all/feature_schema.json"
+    },
+    "c": {
+      "model": "C/data_all1/processed/models_cpp/rf_model_cpp.joblib",
+      "model_sha256": "622a85b6a34ebf4110ee3993222fd0072af949487bb6b58e9b36c1674dce960f",
+      "feature_count": 400,
+      "schema": "C/data_all1/feature_schema.json"
+    },
+    "cpp": {
+      "model": "C++/data_all/processed/models_cpp/rf_model_cpp.joblib",
+      "model_sha256": "58a5b265ea33beb27773f9f2fe57567eb892dbd670fe1677099ff5ed3236e0b1",
+      "feature_count": 400,
+      "schema": "C++/data_all/feature_schema.json"
+    },
+    "java": {
+      "model": "Java/data_all/processed/models_java/rf_model_java.joblib",
+      "model_sha256": "385d1cead9360be3694a34cacdb1303049dc2a984a3e8fe6d2afa6d339762d28",
+      "feature_count": 300,
+      "schema": "Java/data_all/feature_schema.json"
+    },
+    "javascript": {
+      "model": "Javascript/data_12345/processed/models_js/ensemble_model_js.joblib",
+      "model_sha256": "70b4f1ce3bfcd12702cf6b8af82c274f9df8f2742c729d78e238d19963011e95",
+      "feature_count": 300,
+      "schema": "Javascript/data_12345/feature_schema.json"
+    },
+    "typescript": {
+      "model": "Typescript/data_all/processed/models_ts/ensemble_model_ts.joblib",
+      "model_sha256": "dbd50088917f3a976e4c9ded4e8154ff666902c2be79438c4f42f9b75647dd34",
+      "feature_count": 300,
+      "schema": "Typescript/data_all/feature_schema.json"
+    }
+  },
+  "files": {
+    "C/config.py": "3df0cd2b309623907b2fd1763a7a18534abc206ff36c8aef803af284f3b6a6cf",
+    "C/data_all1/feature_schema.json": "7d090ec66bf50d758d479e3779c6910686a3c913c56199ec5250c3a5fa5b0e5a",
+    "C/data_all1/processed/models_cpp/rf_model_cpp.joblib": "622a85b6a34ebf4110ee3993222fd0072af949487bb6b58e9b36c1674dce960f",
+    "C/feature_extractor.py": "5bffc98d4c02944644af5c1550711d670f78c63f8be1e6417f3af78039ea279b",
+    "C++/config.py": "b7262774778bc9d595dba3e4d2c8117a56e8e4937f57c0988bef646b6fc6bb57",
+    "C++/data_all/feature_schema.json": "732694c43266d3892006cca8c4dbed21b28576ceeb73ef54d10df3b6b588ec07",
+    "C++/data_all/processed/models_cpp/rf_model_cpp.joblib": "58a5b265ea33beb27773f9f2fe57567eb892dbd670fe1677099ff5ed3236e0b1",
+    "C++/feature_extractor_plus.py": "81f2ed72f5d55a3467a96e32debe598a2b169cb2ffd5708207c08ea895d06789",
+    "Java/config.py": "25934ea4cd9fb829bcc0420c8936d4d58719e64fd3c2a4001c0d46557f86a105",
+    "Java/data_all/feature_schema.json": "54678ecd043c92cd257a54f0a887dc8ae091058b714b3b31e391034bde1dce49",
+    "Java/data_all/processed/models_java/rf_model_java.joblib": "385d1cead9360be3694a34cacdb1303049dc2a984a3e8fe6d2afa6d339762d28",
+    "Java/feature_extractor.py": "3bac1b33cb784907db9b6ae532c4a269a2bfcf92f688c7625cf68bd797d6dbf2",
+    "Javascript/config.py": "a601713d2799d8b2b0c2b4958de44649d1ca64a966ba876b07963477c38e8040",
+    "Javascript/data_12345/feature_schema.json": "d786c940de0a3e210d4ccd80d3548d015e447b8e822be6440d08cbebebc530ce",
+    "Javascript/data_12345/processed/models_js/ensemble_model_js.joblib": "70b4f1ce3bfcd12702cf6b8af82c274f9df8f2742c729d78e238d19963011e95",
+    "Javascript/feature_extractor.py": "7dac66e7e3d395c3ce21dfa0917d6e6a912c2c894d2b15ff725816995623b5b2",
+    "Python/config.py": "2110a9298799c61f0e1451b6eea84c412cd3ec06eeff0b06b533e51a18f9ec0e",
+    "Python/data_all/feature_schema.json": "d954df327b991a458155a71b38184ef1edaef2fee50f80c4d4858703f8e9198c",
+    "Python/data_all/processed/models_python/ensemble_model_python.joblib": "73224bdc609cd4f9a5b8673801ec53574a806a3d278f126b090b756d6c97abd8",
+    "Python/feature_extractor.py": "15d356010436002dfa47cd49cdaa72c10fb7fcabd97b2b023160ec7460fa3db2",
+    "Typescript/config.py": "714ef6c38a6c9d0b9f68370a989a1bd175639bad2a28905f4e9a8addee8dbc0c",
+    "Typescript/data_all/feature_schema.json": "db3189db9a760ebb3daad8706f9d0392a4fc4493ed91d3ae6ca27e56607d8b9c",
+    "Typescript/data_all/processed/models_ts/ensemble_model_ts.joblib": "dbd50088917f3a976e4c9ded4e8154ff666902c2be79438c4f42f9b75647dd34",
+    "Typescript/feature_extractor.py": "8cfce1e6918e87e7f48bc042048ca0c3f4785f72bcd4a478346a461ae1e9679f"
+  }
+}

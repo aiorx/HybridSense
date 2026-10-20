@@ -1,0 +1,42 @@
+# Local credentials and personal configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Environments, dependencies and generated output
+.venv/
+venv/
+.cache/
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Private runs, checkpoints, downloads and original training experiments
+runtime/
+emb-_cbt/
+*.sqlite*
+*.db
+*.log
+*.zip
+*.7z
+
+# Superseded local integration scripts
+/scripts/browser_smoke.cjs
+/scripts/live_agent_check.py
+
+# Editor / operating system state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
