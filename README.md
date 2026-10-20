@@ -105,16 +105,16 @@ runtime/       Local runs, encoder weights, checkpoints; excluded from Git
 
 ### Inference assets
 
-| Language | Features | Classifier |
+| Language | Features | Decision framework |
 | --- | ---: | --- |
 | Python | 400 | Voting ensemble |
 | C | 400 | Voting ensemble |
 | C++ | 400 | Voting ensemble |
 | Java | 300 | Voting ensemble |
 | JavaScript | 300 | Voting ensemble |
-| TypeScript | 300 | LightGBM |
+| TypeScript | 300 | Voting ensemble |
 
-Voting members are LightGBM, Random Forest, and HistGradientBoosting. Historical model file names do not necessarily identify the estimator class.
+The table uses a unified voting ensemble framework name. Python, C, C++, Java, and JavaScript use LightGBM, Random Forest, and HistGradientBoosting as voting members; the current TypeScript asset has one active member, LightGBM. Historical model file names do not necessarily identify the estimator class.
 
 Only the selected classifiers, required original extractor/config files, ordered JSON schemas, and a checksum manifest are included. Schemas contain column names, **no training rows**. Original `emb-_cbt/` datasets, experiments, ablations, and raw feature tables are excluded. Local original experiments remain supported through `HYBRIDSENSE_MODEL_ROOT=emb-_cbt` and the CSV-header adapter.
 

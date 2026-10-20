@@ -105,16 +105,16 @@ runtime/       本地任务、编码器、检查点，不上传 Git
 
 ### 推理资产
 
-| 语言 | 特征数 | 分类器 |
+| 语言 | 特征数 | 决策框架 |
 | --- | ---: | --- |
-| Python | 400 | 投票集成 |
-| C | 400 | 投票集成 |
-| C++ | 400 | 投票集成 |
-| Java | 300 | 投票集成 |
-| JavaScript | 300 | 投票集成 |
-| TypeScript | 300 | LightGBM |
+| Python | 400 | 集成投票 |
+| C | 400 | 集成投票 |
+| C++ | 400 | 集成投票 |
+| Java | 300 | 集成投票 |
+| JavaScript | 300 | 集成投票 |
+| TypeScript | 300 | 集成投票 |
 
-投票集成的实际成员为 LightGBM、随机森林和 HistGradientBoosting。历史文件名不一定对应真实分类器类型。
+表格统一使用集成投票框架命名。Python、C、C++、Java 和 JavaScript 的投票成员为 LightGBM、随机森林和 HistGradientBoosting；当前 TypeScript 资产仅启用 LightGBM 一个成员。历史文件名不一定对应真实分类器类型。
 
 仓库仅包含选定分类器、必需的原始提取器 / 配置、有序 JSON 特征 schema 与哈希清单。schema **只保存列名，不包含训练数据行**。原始 `emb-_cbt/` 数据集、实验、消融结果与完整特征表不上传。已有原实验的本地环境仍可设置 `HYBRIDSENSE_MODEL_ROOT=emb-_cbt`，继续通过 CSV 表头适配。
 
